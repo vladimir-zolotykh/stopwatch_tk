@@ -40,6 +40,8 @@ def on_configure(event):
 
 # scroll_frame.bind("<Configure>", on_configure)
 stopwatch1.bind("<Configure>", on_configure)
+stopwatch2.bind("<Configure>", on_configure)
+stopwatch3.bind("<Configure>", on_configure)
 
 # Populate with many widgets
 # for i in range(30):
