@@ -28,9 +28,9 @@ stopwatch3 = Stopwatch(canvas)
 
 # Add the frame to the canvas
 # window = canvas.create_window((0, 0), window=scroll_frame, anchor="nw")
-window1 = canvas.create_window((0, 0), window=stopwatch1, anchor="nw")
-window2 = canvas.create_window((0, 100), window=stopwatch2, anchor="nw")
-window3 = canvas.create_window((0, 200), window=stopwatch3, anchor="nw")
+# window1 = canvas.create_window((0, 0), window=stopwatch1, anchor="nw")
+# window2 = canvas.create_window((0, 100), window=stopwatch2, anchor="nw")
+# window3 = canvas.create_window((0, 200), window=stopwatch3, anchor="nw")
 
 
 # Ensure canvas scrolls when frame grows
@@ -38,10 +38,16 @@ def on_configure(event):
     canvas.configure(scrollregion=canvas.bbox("all"))
 
 
+for y2 in range(0, 700, 100):
+    stopwatch = Stopwatch(canvas)
+    canvas.create_window((0, y2), window=stopwatch, anchor="nw")
+    stopwatch.bind("<Configure>", on_configure)
+
+
 # scroll_frame.bind("<Configure>", on_configure)
-stopwatch1.bind("<Configure>", on_configure)
-stopwatch2.bind("<Configure>", on_configure)
-stopwatch3.bind("<Configure>", on_configure)
+# stopwatch1.bind("<Configure>", on_configure)
+# stopwatch2.bind("<Configure>", on_configure)
+# stopwatch3.bind("<Configure>", on_configure)
 
 # Populate with many widgets
 # for i in range(30):
