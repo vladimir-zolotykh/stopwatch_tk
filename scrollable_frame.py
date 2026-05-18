@@ -23,10 +23,14 @@ root.grid_columnconfigure(0, weight=1)
 # Create a frame inside the canvas
 scroll_frame = tk.Frame(canvas)
 stopwatch1 = Stopwatch(canvas)
+stopwatch2 = Stopwatch(canvas)
+stopwatch3 = Stopwatch(canvas)
 
 # Add the frame to the canvas
 # window = canvas.create_window((0, 0), window=scroll_frame, anchor="nw")
-window = canvas.create_window((0, 0), window=stopwatch1, anchor="nw")
+window1 = canvas.create_window((0, 0), window=stopwatch1, anchor="nw")
+window2 = canvas.create_window((0, 100), window=stopwatch2, anchor="nw")
+window3 = canvas.create_window((0, 200), window=stopwatch3, anchor="nw")
 
 
 # Ensure canvas scrolls when frame grows
