@@ -14,13 +14,21 @@ class Stopwatch(ttk.Frame):
         self.start_time = 0.0
         self.elapsed = 0.0
         self.after_id = None
-        self.title = title
-
+        self._title_text = title
+        self._title_history: list[str] = [title]
         self.create_widgets()
 
     def create_widgets(self):
-        self.title = tk.Label(self, text=self.title, anchor="center")
-        self.title.grid(row=0, column=0, columnspan=3, pady=(0, 10))
+        self.title_var = tk.StringVar(value=self._title_text)
+        self.title_entry = ttk.Combobox(
+            self,
+            textvariable=self.title_var,
+            values=self._title_history,
+            justify="center",
+        )
+        self.title_entry.grid(row=0, column=0, columnspan=3, pady=(0, 10), sticky="ew")
+        self.title_entry.bind("<Return>", self._save_title)
+        self.title_entry.bind("<FocusOut>", self._save_title)
 
         self.time_var = tk.StringVar(value="00:00:00")
 
@@ -52,6 +60,13 @@ class Stopwatch(ttk.Frame):
             command=self.reset,
         )
         self.reset_button.grid(row=2, column=2, padx=5)
+
+    def _save_title(self, event=None):
+        """Add the current entry text to the history (if non-empty & new)."""
+        text = self.title_var.get().strip()
+        if text and text not in self._title_history:
+            self._title_history.insert(0, text)  # most-recent first
+            self.title_entry["values"] = self._title_history
 
     def start(self):
         if not self.running:
