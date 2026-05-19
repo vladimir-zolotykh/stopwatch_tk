@@ -7,17 +7,21 @@ import time
 
 
 class Stopwatch(ttk.Frame):
-    def __init__(self, master=None):
+    def __init__(self, master, title: str = "Stopwatch"):
         super().__init__(master, padding=10)
 
         self.running = False
         self.start_time = 0.0
         self.elapsed = 0.0
         self.after_id = None
+        self.title = title
 
         self.create_widgets()
 
     def create_widgets(self):
+        self.title = tk.Label(self, text=self.title, anchor="center")
+        self.title.grid(row=0, column=0, columnspan=3, pady=(0, 10))
+
         self.time_var = tk.StringVar(value="00:00:00")
 
         self.label = ttk.Label(
@@ -26,28 +30,28 @@ class Stopwatch(ttk.Frame):
             font=("TkDefaultFont", 28),
             anchor="center",
         )
-        self.label.grid(row=0, column=0, columnspan=3, pady=(0, 10))
+        self.label.grid(row=1, column=0, columnspan=3, pady=(0, 10))
 
         self.start_button = ttk.Button(
             self,
             text="Start",
             command=self.start,
         )
-        self.start_button.grid(row=1, column=0, padx=5)
+        self.start_button.grid(row=2, column=0, padx=5)
 
         self.stop_button = ttk.Button(
             self,
             text="Stop",
             command=self.stop,
         )
-        self.stop_button.grid(row=1, column=1, padx=5)
+        self.stop_button.grid(row=2, column=1, padx=5)
 
         self.reset_button = ttk.Button(
             self,
             text="Reset",
             command=self.reset,
         )
-        self.reset_button.grid(row=1, column=2, padx=5)
+        self.reset_button.grid(row=2, column=2, padx=5)
 
     def start(self):
         if not self.running:

@@ -22,10 +22,10 @@ class Board(tk.Tk):
         rows = self.stopwatches // cols
         for row in range(rows):
             col = 0
-            stopwatch = Stopwatch(self.frame)
+            stopwatch = Stopwatch(self.frame, title=f"Stopwatch{str(row * cols + col)}")
             stopwatch.grid(column=col, row=row, sticky=tk.NW)
             col += 1
-            stopwatch = Stopwatch(self.frame)
+            stopwatch = Stopwatch(self.frame, title=f"Stopwatch{str(row * cols + col)}")
             stopwatch.grid(column=col, row=row, sticky=tk.NW)
             col += 1
 
