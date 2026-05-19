@@ -18,16 +18,12 @@ class Board(tk.Tk):
         self.create_widgets()
 
     def create_widgets(self):
-        cols = 2
-        rows = self.stopwatches // cols
+        rows = self.stopwatches // 2
         for row in range(rows):
-            col = 0
-            stopwatch = Stopwatch(self.frame, title=f"Stopwatch{str(row * cols + col)}")
-            stopwatch.grid(column=col, row=row, sticky=tk.NW)
-            col += 1
-            stopwatch = Stopwatch(self.frame, title=f"Stopwatch{str(row * cols + col)}")
-            stopwatch.grid(column=col, row=row, sticky=tk.NW)
-            col += 1
+            stopwatch = Stopwatch(self.frame, title=f"Stopwatch#{row * 2}")
+            stopwatch.grid(column=0, row=row, sticky=tk.NW)
+            stopwatch = Stopwatch(self.frame, title=f"Stopwatch#{row * 2 + 1}")
+            stopwatch.grid(column=1, row=row, sticky=tk.NW)
 
 
 if __name__ == "__main__":
