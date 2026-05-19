@@ -8,7 +8,7 @@ from tkinter_stopwatch import Stopwatch
 class Board(tk.Tk):
     def __init__(self, stopwatches):
         super().__init__()
-        self.geometry("300x200")
+        # self.geometry("300x200")
         self.title(f"Stopwatches({stopwatches})")
         self.stopwatches = stopwatches
         self.frame = tk.Frame(self)
