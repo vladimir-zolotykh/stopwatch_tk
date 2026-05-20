@@ -24,21 +24,21 @@ class Stopwatch(ttk.Frame):
         self.create_widgets()
 
     def create_widgets(self):
-        self.title_var = tk.StringVar(value="")
+        self.note_var = tk.StringVar(value=self.note_history.data[0])
 
         def update_values():
-            self.title_entry["values"] = self.note_history.data
+            self.note_entry["values"] = self.note_history.data
 
-        self.title_entry = ttk.Combobox(
+        self.note_entry = ttk.Combobox(
             self,
-            textvariable=self.title_var,
+            textvariable=self.note_var,
             values=self.note_history.data,
             postcommand=update_values,
             justify="center",
         )
-        self.title_entry.grid(row=0, column=0, columnspan=3, pady=(0, 10), sticky="ew")
-        self.title_entry.bind("<Return>", self._save_title)
-        self.title_entry.bind("<FocusOut>", self._save_title)
+        self.note_entry.grid(row=0, column=0, columnspan=3, pady=(0, 10), sticky="ew")
+        self.note_entry.bind("<Return>", self._save_title)
+        self.note_entry.bind("<FocusOut>", self._save_title)
 
         self.time_var = tk.StringVar(value="00:00:00")
 
@@ -73,10 +73,10 @@ class Stopwatch(ttk.Frame):
 
     def _save_title(self, event=None):
         """Add the current entry text to the history (if non-empty & new)."""
-        text = self.title_var.get().strip()
+        text = self.note_var.get().strip()
         if text and text not in self.note_history:
             self.note_history.data.insert(0, text)
-            self.title_entry["values"] = self.note_history.data
+            self.note_entry["values"] = self.note_history.data
 
     def start(self):
         if not self.running:
