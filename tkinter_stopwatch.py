@@ -42,13 +42,13 @@ class Stopwatch(ttk.Frame):
 
         self.time_var = tk.StringVar(value="00:00:00")
 
-        self.label = ttk.Label(
+        self.time_label = ttk.Label(
             self,
             textvariable=self.time_var,
-            font=("TkDefaultFont", 28),
+            font=("TkDefaultFont", 22),
             anchor="center",
         )
-        self.label.grid(row=1, column=0, columnspan=3, pady=(0, 10))
+        self.time_label.grid(row=1, column=0, columnspan=3, pady=(0, 10))
 
         self.start_button = ttk.Button(
             self,
