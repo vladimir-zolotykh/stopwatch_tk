@@ -2,6 +2,7 @@
 ARCHIVE
 www/
 SOW/
+.board_note_history.db
 example1.py
 example2.py
 register_pattern.py
