@@ -2,11 +2,12 @@
 # -*- coding: utf-8 -*-
 # PYTHON_ARGCOMPLETE_OK
 import tkinter as tk
+import shelve
 from tkinter_stopwatch import Stopwatch, NoteHistory
 
 
 class Board(tk.Tk):
-    def __init__(self, stopwatches):
+    def __init__(self, stopwatches, note_history_init=[]):
         super().__init__()
         # self.geometry("300x200")
         self.title(f"Stopwatches({stopwatches})")
@@ -20,7 +21,8 @@ class Board(tk.Tk):
         self.create_widgets()
 
     def create_widgets(self):
-        Stopwatch.note_history = NoteHistory(["creatine&piracetam", "IMET"])
+        # Stopwatch.note_history = NoteHistory(["creatine&piracetam", "IMET"])
+        Stopwatch.note_history = NoteHistory(saved_notes["note_history"])
         rows = self.stopwatches // 2
         for row in range(rows):
             stopwatch = Stopwatch(self.frame)
@@ -30,5 +32,9 @@ class Board(tk.Tk):
 
 
 if __name__ == "__main__":
-    board = Board(10)
-    board.mainloop()
+    with shelve.open(".board_note_history") as saved_notes:
+        if "note_history" not in saved_notes:
+            saved_notes["note_history"] = ["creatine&piracetam", "IMET"]
+        board = Board(10, saved_notes["note_history"])
+        board.mainloop()
+        saved_notes["note_history"] = Stopwatch.note_history.data

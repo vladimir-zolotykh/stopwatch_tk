@@ -82,6 +82,7 @@ class Stopwatch(ttk.Frame):
         # if text and text not in self._title_history:
         if text and text not in self.note_history:
             self.note_history.data.insert(0, text)
+            print(Stopwatch.note_history.data)
             self.title_entry["values"] = self.note_history.data
 
     def start(self):
