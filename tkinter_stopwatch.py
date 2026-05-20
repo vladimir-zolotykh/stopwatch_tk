@@ -21,13 +21,9 @@ class Stopwatch(ttk.Frame):
         self.start_time = 0.0
         self.elapsed = 0.0
         self.after_id = None
-        # self._title_text = title
-        # self._title_history: list[str] = [title]
-        # self.note_history = note_history
         self.create_widgets()
 
     def create_widgets(self):
-        # self.title_var = tk.StringVar(value=self._title_text)
         self.title_var = tk.StringVar(value="")
 
         def update_values():
@@ -36,7 +32,6 @@ class Stopwatch(ttk.Frame):
         self.title_entry = ttk.Combobox(
             self,
             textvariable=self.title_var,
-            # values=self._title_history,
             values=self.note_history.data,
             postcommand=update_values,
             justify="center",
@@ -79,10 +74,8 @@ class Stopwatch(ttk.Frame):
     def _save_title(self, event=None):
         """Add the current entry text to the history (if non-empty & new)."""
         text = self.title_var.get().strip()
-        # if text and text not in self._title_history:
         if text and text not in self.note_history:
             self.note_history.data.insert(0, text)
-            print(Stopwatch.note_history.data)
             self.title_entry["values"] = self.note_history.data
 
     def start(self):
