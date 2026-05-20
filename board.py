@@ -3,12 +3,22 @@
 # PYTHON_ARGCOMPLETE_OK
 import tkinter as tk
 import shelve
+from tkinter import ttk
 from tkinter_stopwatch import Stopwatch, NoteHistory
 
 
 class Board(tk.Tk):
     def __init__(self, stopwatches, note_history_init=[]):
         super().__init__()
+        style = ttk.Style()
+        style.theme_use("clam")
+        default_font = ("Arial", 7)
+        style.configure(
+            "TButton",
+            font=default_font,
+            padding=0,
+        )
+
         # self.geometry("300x200")
         self.title(f"Stopwatches({stopwatches})")
         self.stopwatches = stopwatches
