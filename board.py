@@ -19,14 +19,12 @@ class Board(tk.Tk):
             padding=0,
         )
 
-        # self.geometry("300x200")
         self.title(f"Stopwatches({stopwatches})")
         self.stopwatches = stopwatches
         self.frame = tk.Frame(self)
         self.frame.grid(column=0, row=0, sticky=tk.NSEW)
         self.columnconfigure(0, weight=1)
         self.rowconfigure(0, weight=1)
-        # self.note_history = NoteHistory(["creatine&piracetam", "IMET"])
 
         self.create_widgets()
 
